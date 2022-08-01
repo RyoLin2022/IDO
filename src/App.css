@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+}
+
+.home, .reports, .products {
+  display: flex;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
 .App {
   text-align: center;
 }
@@ -14,7 +31,11 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  /* background-color: #282c34; */
+  background-color: wheat;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,6 +43,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  opacity: 1;
 }
 
 .App-link {
@@ -35,4 +57,71 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#connect-btn{
+  font-family:fantasy;
+  color: black;
+  flex: 2;
+  position: fixed;
+  top: 20px;
+  right: 40px;
+  background-color:wheat; 
+  border-radius:30px;
+  width: 80px;
+  height: 40px;
+  border: 2px solid;
+  border-color:black;
+}
+
+
+#balance-btn{
+  font-family:fantasy;
+  color: black;
+  position: fixed;
+  top: 20px;
+  right: 160px;
+  background-color:wheat; 
+  width: 80px;
+  height: 40px;
+  border: 2px solid;
+  border-color:black;
+}
+
+.tables{
+  width: 400px;
+  color: black;
+}
+
+.hr1{
+  color: black;
+  position: fixed;
+  top: 100px;
+  right: 0px;
+  width: 2000px;
+  border: 2px solid;
+}
+
+#isConnected{
+  position: fixed;
+  top: 0px;
+  left: 30px;
+  color: red;
+  flex: 1;  
+  justify-content: center; 
+}
+
+.button{
+  justify-content: center; 
+  align-items: center; 
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  width: auto;
+}
+
+.Ryo  {
+  text-decoration: none;
 }
