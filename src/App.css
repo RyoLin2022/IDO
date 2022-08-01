@@ -7,7 +7,7 @@
   font-family: 'Lato', sans-serif;
 }
 
-.home, .reports, .products {
+.home, .mechanism , .IDO {
   display: flex;
   height: 90vh;
   align-items: center;
@@ -32,7 +32,7 @@
 
 .App-header {
   /* background-color: #282c34; */
-  background-color: wheat;
+  background-image: url(./BG_IDO.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -43,7 +43,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  opacity: 1;
+  opacity: 0;
 }
 
 .App-link {
@@ -125,3 +125,5 @@ img {
 .Ryo  {
   text-decoration: none;
 }
+
+
