@@ -76,17 +76,24 @@
     align-items: center;
 }
 
+td {
+    width: 200px;
+}
+
 #topleft {
-    display: flex;
     justify-content: top;
     text-align: left;
 
     font-family: 'Roboto', sans-serif;
 }
 
-td {
-    width: 200px;
+
+.topRight {
+    justify-content: top;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
 }
+
 
 #APR {
     font-size: 16px;
@@ -108,16 +115,43 @@ td {
     color: white;
     font-family: 'Roboto', sans-serif;
     border: #ff00c1;
+    position: fixed;
+    z-index: 15;
 }
 
+.ToStakeOrNotToStake {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-evenly;
+    width: 200px;
+    position: relative;
+    z-index: 0;
+}
+
+#stakeMiddle {
+    flex:1;
+}
 #Stake-btn {
-    width: 120px;
+    width: 40px;
     height: 40px;
     border-radius: 10px;
     background-color: #ff00c1;
     color: white;
     font-family: 'Roboto', sans-serif;
     border: #ff00c1;
+    flex:1;
+}
+
+
+#Unstake-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #ff00c1;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    border: #ff00c1;
+    flex:1;
 }
 
 
@@ -146,17 +180,63 @@ td {
     width: 300px;
 }
 
+
+.overlay3 {
+    position: absolute;
+    display:none;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+    width: 300px;
+}
+
+
+.overlay4 {
+    position: absolute;
+    display:block;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+    width: 300px;
+}
+
 .popup {
     position: absolute;
-    width: 50%;
-    height: 50%;
-    top: 25%;
-    left: 25%;
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
     text-align: center;
     background: white;
 }
 
+
+.popup2 {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+    text-align: center;
+    background: white;
+}
+
+
 .popup h3 {
+    font-size: 15px;
+    height: 50px;
+    line-height: 50px;
+    color: black;
+}
+
+
+.popup2 h3 {
     font-size: 15px;
     height: 50px;
     line-height: 50px;
@@ -166,4 +246,8 @@ td {
 .CloseIcon {
     cursor: pointer;
     color: black;
+}
+
+#stakeAmountID {
+    width: 100px;
 }
