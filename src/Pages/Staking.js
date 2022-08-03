@@ -4,62 +4,192 @@ import { ethers } from 'ethers';
 import './Staking.css';
 
 let currentAccount = null;
-async function sendTransaction() {
 
-  let params = [
-    {
-      from: currentAccount,
-      to: "0x60e21c1C75E60a966734B4Dd0FE1D3ac7484F00A",
-      gas: Number(30400).toString(16), // 30400
-      gasPrice: Number(10000000000).toString(16), // 10000000000
-      value: Number(1000000000000000).toString(16), // (0.001 ethers)
-    },
-  ]
+// async function sendTransaction() {
 
-  //Result is the transaction hash
-  let result = await window.ethereum.request({ method: "eth_sendTransaction", params }).catch((err) => {
-    console.log(err);
-  })
+//   let params = [
+//     {
+//       from: currentAccount,
+//       to: "0x60e21c1C75E60a966734B4Dd0FE1D3ac7484F00A",
+//       gas: Number(30400).toString(16), // 30400
+//       gasPrice: Number(10000000000).toString(16), // 10000000000
+//       value: Number(1000000000000000).toString(16), // (0.001 ethers)
+//     },
+//   ]
 
-  if (result) {
-    var TXSent = document.getElementById("transaction-btn");
-    TXSent.innerText = "Transaction has been sent";
-    console.log(result);
-  }
-  setTimeout(function () {
-    console.log("The first log delay 10 second");
-  }, 20000);
-}
+//   //Result is the transaction hash
+//   let result = await window.ethereum.request({ method: "eth_sendTransaction", params }).catch((err) => {
+//     console.log(err);
+//   })
+
+//   if (result) {
+//     var TXSent = document.getElementById("transaction-btn");
+//     TXSent.innerText = "Transaction has been sent";
+//     console.log(result);
+//   }
+//   setTimeout(function () {
+//     console.log("The first log delay 10 second");
+//   }, 20000);
+// }
 
 function Staking() {
-  
-  let contractAddress = "0x6b25Cb9338b4cEC5632aFd12B905C9C25a71BB4b";    //Modify Contract Address here!!
-  async function ContractEthBalance() {
+
+  let contractAddress = "0xA20DF0188F1330E1c80e012901735B9C1b58E27a";       //Modify Contract Address here!!
+  let stakingContractAddress = "0xb26318a92f465004f343562D649D9908D8fE5B03";//Modify Staking Contract Address here!!
+
+
+  /*------------------Here's the Balance for the staking contract-----------------*/
+  /*------------------Here's the Balance for the staking contract-----------------*/
+  /*------------------Here's the Balance for the staking contract-----------------*/
+
+  async function erc20Balance() {
     let accBalance = await window.ethereum.request({
-      method: "eth_getBalance",
-      params:
-        [contractAddress, 'latest']
+      method: "eth_call",
+      params: [{
+        to: contractAddress,
+        data: "0x70a08231000000000000000000000000b26318a92f465004f343562d649d9908d8fe5b03",
+        //BalanceOf:0x70a08231
+        //BalanceOF + staking contract address
+      },
+        "latest"
+      ]
     });
     var balanceDEC = Number(accBalance).toString(10);
+
+    var tokenDecimal = 6;
     var inWeiBal = balanceDEC.length;
-    
-    console.log("second");
-    var str = Math.pow(10, (inWeiBal - 22));
-    var ETH = Math.round(str * parseInt(balanceDEC.substring(0, 4)) * 10000) / 10000;
-    console.log(ETH);
-    return ETH;
+    var CAbalance = document.getElementById("StakingContractTokenBalance");
+
+    var str = Math.pow(10, (inWeiBal - tokenDecimal - 4));
+    var rounded = Math.round(str * parseInt(balanceDEC.substring(0, 4)) * 10000) / 10000;
+    CAbalance.innerText = rounded;
   }
 
+
+
+
+
+  /*------------------Checck the allowance for staking contract-----------------*/
+  /*------------------Checck the allowance for staking contract-----------------*/
+  /*------------------Checck the allowance for staking contract-----------------*/
+
+  async function ACCAllowance() {
+    let inputdata = "0xdd62ed3e"
+      + "000000000000000000000000" + currentAccount.substring(2, currentAccount.length)
+      + "000000000000000000000000" + stakingContractAddress.substring(2, stakingContractAddress.length);
+    let accAllowance = await window.ethereum.request({
+      method: "eth_call",
+      params: [{
+        to: contractAddress,
+        data: inputdata,
+        //allowance:0xdd62ed3e
+        //BalanceOF + staking contract address
+      },
+        "latest"
+      ]
+    });
+    var accAllowNum = Number(accAllowance).toString(10);
+
+    if (accAllowNum > 0) {
+      document.getElementById("Approve-btn").hidden = true;
+      document.getElementById("Stake-btn").hidden = false;
+    } else {
+      document.getElementById("Approve-btn").hidden = false;
+      document.getElementById("Stake-btn").hidden = true;
+    }
+  }
+
+
+
+
+  /*------------------Here's the Staking Balance for certain account-----------------*/
+  /*------------------Here's the Staking Balance for certain account-----------------*/
+  /*------------------Here's the Staking Balance for certain account-----------------*/
+  async function ACCStakingBalance() {
+    let inputData = "0x5b5a2213000000000000000000000000" + currentAccount.substring(2, currentAccount.length);
+    let accBalance = await window.ethereum.request({
+      method: "eth_call",
+      params: [{
+        to: stakingContractAddress,
+        data: inputData,
+        //BalanceOf:0x5b5a2213
+      },
+        "latest"
+      ]
+    });
+    var balanceDEC = Number(accBalance).toString(10);
+    var tokenDecimal = 6;
+    var inWeiBal = balanceDEC.length;
+    var CAbalance = document.getElementById("StakingAccountBalance");
+
+    var str = Math.pow(10, (inWeiBal - tokenDecimal - 4));
+    var rounded = Math.round(str * parseInt(balanceDEC.substring(0, 4)) * 10000) / 10000;
+    CAbalance.innerText = rounded;
+  }
+
+
+  /*------------------Here's the Staking Balance for certain account-----------------*/
+  /*------------------Here's the Staking Balance for certain account-----------------*/
+  /*------------------Here's the Staking Balance for certain account-----------------*/
+  async function ACCStakingReward() {
+    let inputData = "0x4d318018000000000000000000000000" + currentAccount.substring(2, currentAccount.length);
+    let accBalance = await window.ethereum.request({
+      method: "eth_call",
+      params: [{
+        to: stakingContractAddress,
+        data: inputData,
+        //BalanceOf:0x5b5a2213
+      },
+        "latest"
+      ]
+    });
+    var balanceDEC = Number(accBalance).toString(10);
+    var tokenDecimal = 6;
+    var inWeiBal = balanceDEC.length;
+    var CAbalance = document.getElementById("StakingAccountInterest");
+
+    var str = Math.pow(10, (inWeiBal - tokenDecimal - 4));
+    var rounded = Math.round(str * parseInt(balanceDEC.substring(0, 4)) * 10000) / 10000;
+    CAbalance.innerText = rounded;
+  }
+
+  // async function ACCerc20Balance() {    
+  //   let inputData = "0x70a08231000000000000000000000000" + currentAccount.substring(2, currentAccount.length);
+  //   let accBalance = await window.ethereum.request({
+  //     method: "eth_call",
+  //     params: [{
+  //       to: contractAddress,
+  //       data: inputData,
+  //       //BalanceOf:0x70a08231
+  //       //(account):0000000000000000000000006b25Cb9338b4cEC5632aFd12B905C9C25a71BB4b
+  //     },
+  //       "latest"
+  //     ]
+  //   });
+  //   var balanceDEC = Number(accBalance).toString(10);
+  //   console.log(balanceDEC);
+  //   var tokenDecimal = 6;
+  //   var inWeiBal = balanceDEC.length;
+  //   var CAbalance = document.getElementById("StakingAccountBalance");
+  //   var str = Math.pow(10, (inWeiBal - tokenDecimal - 4));
+  //   var rounded = Math.round(str * parseInt(balanceDEC.substring(0, 4)) * 10000) / 10000;
+  //   CAbalance.innerText = rounded;
+  // }
+
+
+  /*------------------Here's the token Approval-----------------*/
+  /*------------------Here's the token Approval-----------------*/
+  /*------------------Here's the token Approval-----------------*/
   async function ApproveToken() {
     let params = [
       {
         from: currentAccount,
-        to: '0x301F8f13F950fd86919c9D35B553c50280Aa18c5', //0x55d398326f99059fF775485246999027B3197955
+        to: contractAddress,
         gas: Number(100000).toString(16), // 30400
         gasPrice: Number(10000000000).toString(16), // 10000000000
         value: '0', // 2441406250
-        data:'0x095ea7b30000000000000000000000006488e5e3b69c63b9fe5ef5007b30b0ea3870422f000000000000000000000000000000000000000000000000000000174876e800',
-          
+        data: '0x095ea7b3000000000000000000000000b26318a92f465004f343562d649d9908d8fe5b030000000000000000000000000000000000000000204fce5e3e25026110000000',
+
         //0x095ea7b300000000000000000000000[062e0d998212b01d87049eb2d4a82436f1fca3b63]0000000000000000000000000000000000000000000000056bc75e2d63100000
       },
     ];
@@ -72,24 +202,26 @@ function Staking() {
       }).catch((err) => {
         console.log(err);
       })
-    
-      TokenApprove.innerHTML=ContractEthBalance();
+
+    setTimeout(function () {
+      console.log("The first log delay 20 second");
+      ACCAllowance();
+    }, 20000);
   }
+
+
 
   const [walletAddress, setWalletAddress] = useState("");
 
   async function requestAccount() {
     console.log('Requesting account...');
-
     try {
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
-
       });
       setWalletAddress(accounts[0]);
       currentAccount = accounts[0];
       console.log(currentAccount);
-
     } catch (error) {
       console.log('error connecting');
     }
@@ -110,7 +242,6 @@ function Staking() {
         [currentAccount, 'latest']
     });
     var balanceDEC = Number(accBalance).toString(10);
-    console.log(balanceDEC);
     var inWeiBal = balanceDEC.length;
     var balanceBtn = document.getElementById("balance-btn");
 
@@ -120,7 +251,6 @@ function Staking() {
   }
 
   async function connectWallet() {
-
     if (typeof window.ethereum !== 'undefined') {
       await requestAccount();
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -131,12 +261,33 @@ function Staking() {
       let lengthAcc = currentAccount.length;
       btnConnect.innerText = currentAccount.substring(0, 4) + "..." + currentAccount.substring(lengthAcc - 4, lengthAcc);
 
-      alert("Wallet connected successfully!");
+      erc20Balance();
+      ACCStakingBalance();
+      ACCStakingReward();
       getBalance();
+      ACCAllowance();
+      alert("Wallet connected successfully!");
     } else {
-      alert("Please install Metamask");
+      alert("Please install an injected Web3 wallet");
     }
   }
+
+
+  const [style, setStyle] = useState("overlay");
+  
+  const OpenModal = () => {
+    console.log("you just clicked");
+  
+    setStyle("overlay2");
+  };  
+
+  const CloseModal = () => {
+    console.log("you just clicked");
+  
+    setStyle("overlay");
+  };
+
+
 
   return (
 
@@ -156,32 +307,43 @@ function Staking() {
             Stake $Infinity<br />
             Earn $Infinity
           </div>
-          <br/>
+          <br />
           <table id='APR'>
             <tr>
-              <td>Annul Percentage Yield</td>
-              <td>500%</td>
+              <td id='topleft'>Annul Percentage Yield</td>
+              <td>365%</td>
             </tr>
-            <br/>
+            <br />
             <tr>
-              <td>Total Staked</td>
-              <td><button onClick={ContractEthBalance}>button</button></td>
+              <td id='topleft'>Total Staked</td><br />
+              <td id="StakingContractTokenBalance">0.0</td>
             </tr>
 
           </table>
         </div>
         <div className="staking-box-3">
           <div id='box-3-left'>
-            $Infinity Staked<br/>
-            0.0
+            <div className="upper">Staked</div>
+
+            <div className="lower" id="StakingAccountBalance">0.0</div>
           </div>
           <div id='box-3-right'>
-            <button className="Approve-btn" onClick={ApproveToken}>Withdraw</button>
+            <div className="upper">Earned</div>
+
+            <div className="lower" id="StakingAccountInterest">0.0</div>
           </div>
         </div>
         <div className="staking-box-4">
+          <button id="Approve-btn" onClick={ApproveToken}>Approve</button>
+
+          <div className={style} id="overlay">
+            <div className="popup">
+              <div onClick={CloseModal} className="CloseIcon">X</div>
+              <h3>Stake</h3>
+            </div>
+          </div>
           
-          <button className="Approve-btn" onClick={ApproveToken}>Approve</button>
+          <button id = "Stake-btn" onClick={OpenModal} hidden>Stake</button>
         </div>
       </div>
     </div>
