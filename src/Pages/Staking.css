@@ -115,16 +115,16 @@ td {
     color: white;
     font-family: 'Roboto', sans-serif;
     border: #ff00c1;
-    position: fixed;
-    z-index: 15;
+    position: relative;
+    flex: 1;
 }
 
 .ToStakeOrNotToStake {
     flex-direction: row;
     display: flex;
     justify-content: space-evenly;
-    width: 200px;
     position: relative;
+    align-items: center;
     z-index: 0;
 }
 
@@ -140,6 +140,7 @@ td {
     font-family: 'Roboto', sans-serif;
     border: #ff00c1;
     flex:1;
+    margin-right: 10px;
 }
 
 
@@ -152,6 +153,19 @@ td {
     font-family: 'Roboto', sans-serif;
     border: #ff00c1;
     flex:1;
+    margin-right: 50px;
+}
+
+#Withdraw-btn {
+    width: 80px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #ff00c1;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    border: #ff00c1;
+    flex:1;
+    margin-left: 20px;
 }
 
 
@@ -235,13 +249,13 @@ td {
     color: black;
 }
 
-
 .popup2 h3 {
     font-size: 15px;
     height: 50px;
     line-height: 50px;
     color: black;
 }
+
 
 .CloseIcon {
     cursor: pointer;
