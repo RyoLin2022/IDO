@@ -1,14 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
 import { ethers } from 'ethers';
-import './Staking.css';
+import './LPStaking.css';
 
 let currentAccount = null;
-function Staking() {
+function LPStaking() {
 
+  var LPtokenDecimal = 18;
   var tokenDecimal = 6;
-  let contractAddress = "0xA20DF0188F1330E1c80e012901735B9C1b58E27a";       //Modify Contract Address here!!
-  let stakingContractAddress = "0x890EdA5DF0f8d6ACdCf97e363Cc164dA4c64E15b";//Modify Staking Contract Address here!!
+  let contractAddress = "0x6d0780b9d20903171f7412EEF5d3D4093042951b";       //LP Contract
+  let stakingContractAddress = "0x4ffdb878aD86055A29fE7eD746eAD8f11fCA7Db0";//Modify Staking Contract Address here!!
 
   /*------------------Here's the Balance for the staking contract-----------------*/
   /*------------------Here's the Balance for the staking contract-----------------*/
@@ -29,13 +30,9 @@ function Staking() {
       ]
     });
     var balanceDEC = Number(accBalance).toString(10);
-
-    var inWeiBal = balanceDEC.length;
     var CAbalance = document.getElementById("StakingContractTokenBalance");
-
-    var str = Math.pow(10, (inWeiBal - tokenDecimal - 4));
-    var rounded = Math.round(str * parseInt(balanceDEC.substring(0, 8)) * 10000) / 100000000;
-    CAbalance.innerText = rounded;
+    var actual = balanceDEC/Math.pow(10,LPtokenDecimal);
+    CAbalance.innerText = actual;
   }
 
 
@@ -95,14 +92,17 @@ function Staking() {
       ]
     });
     var balanceDEC = Number(accBalance).toString(10);
-    var actual = balanceDEC / Math.pow(10, tokenDecimal);
+    var actual = balanceDEC / Math.pow(10, LPtokenDecimal);
 
     var StakingAccbalance = document.getElementById("StakingBalance");
-    StakingAccbalance.innerText = actual;
-    document.getElementById("maxUnstake").value = actual;
 
+    var actualMinus8 = balanceDEC / Math.pow(10, LPtokenDecimal-8);
+    var actualStrPart = actualMinus8.toString();
+    var actualStrFull = "0.00000000" +actualStrPart.substring(2,actualStrPart.length);    
+    StakingAccbalance.innerText = actualStrFull;    
+    document.getElementById("maxUnstake").value = actualStrFull;
+    
     var StakingACCbalance = document.getElementById("StakingAccountBalance");
-    var rounded = actual.toString().substring(0, 6);
     StakingACCbalance.innerText = actual;
   }
 
@@ -154,12 +154,13 @@ function Staking() {
       ]
     });
     var balanceDEC = Number(accBalance).toString(10);
-    var actual = balanceDEC / Math.pow(10, tokenDecimal);
-
+    var actual = balanceDEC / Math.pow(10, LPtokenDecimal-8);
+    var actualStrPart = actual.toString();
+    var actualStrFull = "0.00000000" +actualStrPart.substring(2,actualStrPart.length);
     var CAbalance = document.getElementById("ACCTokenBalance");
 
-    document.getElementById("maxStake").value = actual;
-    CAbalance.innerText = actual;
+    document.getElementById("maxStake").value = actualStrFull;
+    CAbalance.innerText = actualStrFull;
   }
 
 
@@ -205,6 +206,8 @@ function Staking() {
       console.log("The first log delay 10 second");
     }, 20000);
   }
+//0xadf8ccaa000000000000000000000000000000000000000000000000000000024e162628
+//0xadf8ccaa000000000000000000000000000000000000000000000000000000003b023704
 
 
 
@@ -436,7 +439,7 @@ function Staking() {
   function getStakeAmount() {
     let staking = document.getElementById("stakeAmountID");
     let inputValue = staking.value;
-    let inputValueDecimal = inputValue * Math.pow(10, tokenDecimal);
+    let inputValueDecimal = inputValue * Math.pow(10, LPtokenDecimal);
     document.getElementById("stakeMiddle").value = inputValueDecimal;
 
     makeStake();
@@ -446,7 +449,7 @@ function Staking() {
   function getUnstakeAmount() {
     let Unstaking = document.getElementById("UnstakeAmountID");
     let inputValue = Unstaking.value;
-    let inputValueDecimal = inputValue * Math.pow(10, tokenDecimal);
+    let inputValueDecimal = inputValue * Math.pow(10, LPtokenDecimal);
     document.getElementById("unstakeMiddle").value = inputValueDecimal;
 
     makeUnstake();
@@ -456,7 +459,7 @@ function Staking() {
 
   return (
 
-    <div className='staking'>
+    <div className='lpstaking'>
       <button id="balance-btn" hidden>
         balance
       </button>
@@ -467,12 +470,12 @@ function Staking() {
       <div className="Stakingcontainer">
 
         <div className="staking-box-1">
-          <h4>Staking Pool</h4>
+          <h4>LP Staking Pool</h4>
         </div>
 
         <div className="staking-box-2">
           <div id='topleft'>
-            Stake $Infinity<br />
+            Stake LP $Infinity/OKT<br />
             Earn $Infinity
           </div>
           <br />
@@ -519,7 +522,7 @@ function Staking() {
             <div className="popup2">
               <div onClick={CloseUnstake} className="CloseIcon">X</div>
               <h3 id="unstakeMiddle">Unstake</h3>
-              <h3>Staking Balance<span id="StakingBalance"></span></h3>
+              <h3>Staking Balance<br/><span id="StakingBalance"></span></h3>
               <input className="unstakeAmountClass" id="UnstakeAmountID"></input>
               <div id="maxUnstake" onClick={maxUnstakeButton}>max</div>
               <button id="GoingToUnstake" onClick={getUnstakeAmount}>Unstake Now</button>
@@ -543,4 +546,4 @@ function Staking() {
 }
 
 
-export default Staking
+export default LPStaking

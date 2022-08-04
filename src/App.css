@@ -6,7 +6,7 @@
   padding: 0;
 }
 
-.home, .mechanism , .IDO , .staking{
+.home, .mechanism , .IDO , .staking, .lpstaking {
   display: flex;
   height: 90vh;
   align-items: center;
