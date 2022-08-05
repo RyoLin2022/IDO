@@ -23,7 +23,7 @@
     flex: 1;
     font-family: 'Roboto', sans-serif;
     color: aliceblue;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,13 +33,13 @@
     border: 1px solid white;
     flex: 2.5;
     color: white;
-    background-color: #6615bc;
+    /* background-color: #6615bc; */
     padding: 32px 16px 16px;
 }
 
 .staking-box-3 {
     border: 1px solid white;
-    background-color: #6615bc;
+    /* background-color: #6615bc; */
     flex: 2;
     font-size: 20px;
     display: flex;
@@ -66,7 +66,7 @@
 
 .staking-box-4 {
     border: 1px solid white;
-    background-color: #6615bc;
+    /* background-color: #6615bc; */
     color: white;
     flex: 2;
     border-bottom-left-radius: 10px;
@@ -110,11 +110,12 @@ td {
 #Approve-btn {
     width: 120px;
     height: 40px;
+    border-color: white;
     border-radius: 10px;
-    background-color: #ff00c1;
+    background-color: transparent;
     color: white;
     font-family: 'Roboto', sans-serif;
-    border: #ff00c1;
+    /* border: #ff00c1; */
     position: relative;
     flex: 1;
 }
@@ -134,11 +135,12 @@ td {
 #Stake-btn {
     width: 40px;
     height: 40px;
+    border-color: white;
     border-radius: 10px;
-    background-color: #ff00c1;
+    background-color: transparent;
     color: white;
     font-family: 'Roboto', sans-serif;
-    border: #ff00c1;
+    /* border: #ff00c1; */
     flex:1;
     margin-right: 10px;
 }
@@ -147,11 +149,12 @@ td {
 #Unstake-btn {
     width: 40px;
     height: 40px;
+    border-color: white;
     border-radius: 10px;
-    background-color: #ff00c1;
+    background-color: transparent;
     color: white;
     font-family: 'Roboto', sans-serif;
-    border: #ff00c1;
+    /* border: #ff00c1; */
     flex:1;
     margin-right: 50px;
 }
@@ -159,11 +162,12 @@ td {
 #Withdraw-btn {
     width: 80px;
     height: 40px;
+    border-color: white;
     border-radius: 10px;
-    background-color: #ff00c1;
+    background-color: transparent;
     color: white;
     font-family: 'Roboto', sans-serif;
-    border: #ff00c1;
+    /* border: #ff00c1; */
     flex:1;
     margin-left: 20px;
 }
@@ -275,7 +279,7 @@ td {
     background-color:black;
     color: white;
     font-family: 'Roboto', sans-serif;
-    border: #ff00c1;
+    /* border: #ff00c1; */
     flex:1;
     margin-top: 30px;
 }
@@ -287,7 +291,7 @@ td {
     background-color:black;
     color: white;
     font-family: 'Roboto', sans-serif;
-    border: #ff00c1;
+    /* border: #ff00c1; */
     flex:1;
     margin-top: 30px;
 }
