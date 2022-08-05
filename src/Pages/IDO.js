@@ -1,143 +1,76 @@
 import React from 'react';
-import { useState } from 'react';
-import { ethers } from 'ethers';
 import './IDO.css';
+import { savedAcc } from '../App';
+
 
 let currentAccount = null;
-async function sendTransaction() {
-
-  let params = [
-    {
-      from: currentAccount,
-      to: "0x60e21c1C75E60a966734B4Dd0FE1D3ac7484F00A",
-      gas: Number(30400).toString(16), // 30400
-      gasPrice: Number(10000000000).toString(16), // 10000000000
-      value: Number(1000000000000000).toString(16), // (0.001 ethers)
-    },
-  ]
-
-  //Result is the transaction hash
-  let result = await window.ethereum.request({ method: "eth_sendTransaction", params }).catch((err) => {
-    console.log(err);
-  })
-
-  if (result) {
-    var TXSent = document.getElementById("transaction-btn");
-    TXSent.innerText = "Transaction has been sent";
-    console.log(result);
-  }
-  setTimeout(function () {
-    console.log("The first log delay 10 second");
-  }, 20000);
-}
-
-  let contractAddress = "0x6b25Cb9338b4cEC5632aFd12B905C9C25a71BB4b";    //Modify Contract Address here!!
-  async function ContractEthBalance() {
-    let accBalance = await window.ethereum.request({
-      method: "eth_getBalance",
-      params:
-        [contractAddress, 'latest']
-    });
-    var balanceDEC = Number(accBalance).toString(10);
-    console.log(balanceDEC);
-    var inWeiBal = balanceDEC.length;
-    var balanceBtn = document.getElementById("test-btn");
-
-    var str = Math.pow(10, (inWeiBal - 22));
-    var rounded = Math.round(str * parseInt(balanceDEC.substring(0, 4)) * 10000) / 10000;
-    balanceBtn.innerText = rounded + " BNB";
-  }
 
 function IDO() {
 
+  currentAccount = savedAcc;
 
-  const [walletAddress, setWalletAddress] = useState("");
+  async function sendTransaction() {
 
-  async function requestAccount() {
-    console.log('Requesting account...');
-
-    try {
-      const accounts = await window.ethereum.request({
-        method: "eth_requestAccounts",
-
+    let params = [
+      {
+        from: currentAccount,
+        to: "0x60e21c1C75E60a966734B4Dd0FE1D3ac7484F00A",
+        gas: Number(30400).toString(16), // 30400
+        gasPrice: Number(10000000000).toString(16), // 10000000000
+        value: Number(1000000000000000).toString(16), // (0.001 ethers)
+      },
+    ]
+  
+    //Result is the transaction hash
+    let result = await window.ethereum.request({ method: "eth_sendTransaction", params }).catch((err) => {
+      console.log(err);
+    })
+  
+    if (result) {
+      var TXSent = document.getElementById("transaction-btn");
+      TXSent.innerText = "Transaction has been sent";
+      console.log(result);
+    }
+    setTimeout(function () {
+      console.log("The first log delay 10 second");
+    }, 20000);
+  }
+  
+    let contractAddress = "0x6b25Cb9338b4cEC5632aFd12B905C9C25a71BB4b";    //Modify Contract Address here!!
+    async function ContractEthBalance() {
+      let accBalance = await window.ethereum.request({
+        method: "eth_getBalance",
+        params:
+          [contractAddress, 'latest']
       });
-      setWalletAddress(accounts[0]);
-      currentAccount = accounts[0];
-      console.log(currentAccount);
-
-    } catch (error) {
-      console.log('error connecting');
+      var balanceDEC = Number(accBalance).toString(10);
+      console.log(balanceDEC);
+      var inWeiBal = balanceDEC.length;
+      var balanceBtn = document.getElementById("test-btn");
+  
+      var str = Math.pow(10, (inWeiBal - 22));
+      var rounded = Math.round(str * parseInt(balanceDEC.substring(0, 4)) * 10000) / 10000;
+      balanceBtn.innerText = rounded + " OKT";
     }
-
-    //Check if Metamask Exist
-    if (window.ethereum) {
-      console.log('detected');
-    } else {
-      console.log('not detected');
-      alert("Please Install Metamask");
-    }
-  }
-
-  async function getBalance() {
-    let accBalance = await window.ethereum.request({
-      method: "eth_getBalance",
-      params:
-        [currentAccount, 'latest']
-    });
-    var balanceDEC = Number(accBalance).toString(10);
-    console.log(balanceDEC);
-    var inWeiBal = balanceDEC.length;
-    var balanceBtn = document.getElementById("balance-btn");
-
-    var str = Math.pow(10, (inWeiBal - 22));
-    var rounded = Math.round(str * parseInt(balanceDEC.substring(0, 4)) * 10000) / 10000;
-    balanceBtn.innerText = rounded + " BNB";
-  }
-
-  async function connectWallet() {
-
-    if (typeof window.ethereum !== 'undefined') {
-      await requestAccount();
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-      var btnConnect = document.getElementById("connect-btn");
-      document.getElementById("balance-btn").hidden = false;
-
-      let lengthAcc = currentAccount.length;
-      btnConnect.innerText = currentAccount.substring(0, 4) + "..." + currentAccount.substring(lengthAcc - 4, lengthAcc);
-
-      alert("Wallet connected successfully!");
-      getBalance();
-    } else {
-      alert("Please install Metamask");
-    }
-  }
-
-  return (
+    
+    return (
 
     <div className='IDO'>
-      <button id="balance-btn" hidden>
-        balance
-      </button>
-      <button id="connect-btn" onClick={connectWallet}>
-        Connect Wallet
-      </button>
 
       <div className="IDOcontainer">
+      <h1 className="animate__animated animate__rotateIn" id="Welcome">Welcome to Infinity</h1>
         <div className="box1">
           <table className="Table">
-            <tr>IDO</tr>
-            <hr id='hr1'/>
+            <tr id="tr1">IDO</tr>
             <tr>
-              <td>IDO Amount</td>
-              <td>500 OKT</td>
+              <td>Amount</td>
+              <td >2OKT/Person</td>
             </tr>
-            <hr id='hr2'/>
 
           </table>
         </div>
         <div className="box2">
-          <button id='transaction-btn' onClick={sendTransaction} class="button">
+          <button id='IDOtransaction-btn' onClick={sendTransaction} className="button">
             Make IDO
           </button>
 
@@ -146,7 +79,6 @@ function IDO() {
 
         </div>
       </div>
-      <h4 class="animate__animated animate__rotateIn" id="Welcome">Welcome to Infinity</h4>
     </div>
 
   )

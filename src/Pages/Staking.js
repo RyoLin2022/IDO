@@ -2,13 +2,21 @@ import React from 'react';
 import { useState } from 'react';
 import { ethers } from 'ethers';
 import './Staking.css';
+import { savedAcc } from '../App';
 
 let currentAccount = null;
 function Staking() {
-
+  currentAccount = savedAcc;
   var tokenDecimal = 6;
   let contractAddress = "0xA20DF0188F1330E1c80e012901735B9C1b58E27a";       //Modify Contract Address here!!
   let stakingContractAddress = "0x890EdA5DF0f8d6ACdCf97e363Cc164dA4c64E15b";//Modify Staking Contract Address here!!
+
+  
+  erc20Balance();
+  ACCStakingBalance();
+  ACCStakingReward();
+  ACCAllowance();
+  ACCerc20Balance();
 
   /*------------------Here's the Balance for the staking contract-----------------*/
   /*------------------Here's the Balance for the staking contract-----------------*/
@@ -334,67 +342,7 @@ function Staking() {
 
 
 
-  const [walletAddress, setWalletAddress] = useState("");
 
-  async function requestAccount() {
-    console.log('Requesting account...');
-    try {
-      const accounts = await window.ethereum.request({
-        method: "eth_requestAccounts",
-      });
-      setWalletAddress(accounts[0]);
-      currentAccount = accounts[0];
-      console.log(currentAccount);
-    } catch (error) {
-      console.log('error connecting');
-    }
-
-    //Check if Metamask Exist
-    if (window.ethereum) {
-      console.log('detected');
-    } else {
-      console.log('not detected');
-      alert("Please Install Metamask");
-    }
-  }
-
-  async function getBalance() {
-    let accBalance = await window.ethereum.request({
-      method: "eth_getBalance",
-      params:
-        [currentAccount, 'latest']
-    });
-    var balanceDEC = Number(accBalance).toString(10);
-    var inWeiBal = balanceDEC.length;
-    var balanceBtn = document.getElementById("balance-btn");
-
-    var str = Math.pow(10, (inWeiBal - 22));
-    var rounded = Math.round(str * parseInt(balanceDEC.substring(0, 4)) * 10000) / 10000;
-    balanceBtn.innerText = rounded + " OKT";
-  }
-
-  async function connectWallet() {
-    if (typeof window.ethereum !== 'undefined') {
-      await requestAccount();
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-      var btnConnect = document.getElementById("connect-btn");
-      document.getElementById("balance-btn").hidden = false;
-
-      let lengthAcc = currentAccount.length;
-      btnConnect.innerText = currentAccount.substring(0, 4) + "..." + currentAccount.substring(lengthAcc - 4, lengthAcc);
-
-      erc20Balance();
-      ACCStakingBalance();
-      ACCStakingReward();
-      getBalance();
-      ACCAllowance();
-      ACCerc20Balance();
-      alert("Wallet connected successfully!");
-    } else {
-      alert("Please install an injected Web3 wallet");
-    }
-  }
 
 
   const [style, setStyle] = useState("overlay");
@@ -457,12 +405,6 @@ function Staking() {
   return (
 
     <div className='staking'>
-      <button id="balance-btn" hidden>
-        balance
-      </button>
-      <button id="connect-btn" onClick={connectWallet}>
-        Connect Wallet
-      </button>
 
       <div className="Stakingcontainer">
 
@@ -478,8 +420,8 @@ function Staking() {
           <br />
           <table id='APR'>
             <tr id='layer1'>
-              <td id='topleft'>Annul Percentage Yield</td>
-              <td className="topRight">365%</td>
+              <td id='topleft'>Daily Output</td>
+              <td className="topRight">1</td>
             </tr>
             <br />
             <tr id='layer2'>

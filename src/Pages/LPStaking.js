@@ -2,14 +2,26 @@ import React from 'react';
 import { useState } from 'react';
 import { ethers } from 'ethers';
 import './LPStaking.css';
+import { savedAcc } from '../App';
 
 let currentAccount = null;
 function LPStaking() {
+
+    currentAccount = savedAcc;
 
   var LPtokenDecimal = 18;
   var tokenDecimal = 6;
   let contractAddress = "0x6d0780b9d20903171f7412EEF5d3D4093042951b";       //LP Contract
   let stakingContractAddress = "0x4ffdb878aD86055A29fE7eD746eAD8f11fCA7Db0";//Modify Staking Contract Address here!!
+
+  
+    
+  erc20Balance();
+  ACCStakingBalance();
+  ACCStakingReward();
+  getBalance();
+  ACCAllowance();
+  ACCerc20Balance();
 
   /*------------------Here's the Balance for the staking contract-----------------*/
   /*------------------Here's the Balance for the staking contract-----------------*/
@@ -387,12 +399,6 @@ function LPStaking() {
       let lengthAcc = currentAccount.length;
       btnConnect.innerText = currentAccount.substring(0, 4) + "..." + currentAccount.substring(lengthAcc - 4, lengthAcc);
 
-      erc20Balance();
-      ACCStakingBalance();
-      ACCStakingReward();
-      getBalance();
-      ACCAllowance();
-      ACCerc20Balance();
       alert("Wallet connected successfully!");
     } else {
       alert("Please install an injected Web3 wallet");
@@ -460,12 +466,6 @@ function LPStaking() {
   return (
 
     <div className='lpstaking'>
-      <button id="balance-btn" hidden>
-        balance
-      </button>
-      <button id="connect-btn" onClick={connectWallet}>
-        Connect Wallet
-      </button>
 
       <div className="Stakingcontainer">
 
@@ -481,8 +481,8 @@ function LPStaking() {
           <br />
           <table id='APR'>
             <tr id='layer1'>
-              <td id='topleft'>Annul Percentage Yield</td>
-              <td className="topRight">365%</td>
+              <td id='topleft'>Daily Output</td>
+              <td className="topRight">10</td>
             </tr>
             <br />
             <tr id='layer2'>
@@ -501,7 +501,6 @@ function LPStaking() {
           </div>
           <div id='box-3-right'>
             <div className="upper">Earned</div>
-
             <div className="lower" id="StakingAccountInterest">0.0</div>
           </div>
         </div>

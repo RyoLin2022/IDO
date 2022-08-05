@@ -59,28 +59,26 @@
 
 #Welcome {
     position:relative;
-    top: -250px;
+    margin-bottom: 50px;
 }
 
 .IDOcontainer {
-    width: 90vw;
+    margin-top:-80px;
+    width: 300px;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     font-size: 24px;
     font-family: 'Oswald', sans-serif;
 }
 
+#IDOtransaction-btn {
+    margin-top: 50px;
+}
+
 table {    
     text-align: center;
 }
-
-#hr1 {
-    width: 40vw;
-}
-#hr2 {
-    min-width: 40vw;
-}
-
 
 .box1 {
     flex:5;
@@ -101,3 +99,7 @@ table {
     order: 2;
 }
 
+
+#tr1 {
+    border: 1px white;
+}
