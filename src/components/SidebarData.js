@@ -25,13 +25,13 @@ export const SidebarData = [
     {
         title: 'Staking',
         path: '/staking',
-        icon: <IoIcons.IoMdPeople />,
+        icon: <FaIcons.FaCoins />,
         cName: 'nav-text'
     },
     {
         title: 'LP Staking',
         path: '/lpstaking',
-        icon: <IoIcons.IoMdPeople />,
+        icon: <FaIcons.FaCoins />,
         cName: 'nav-text'
     },
     {

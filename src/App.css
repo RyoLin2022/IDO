@@ -7,6 +7,7 @@
 }
 
 .home, .mechanism , .IDO , .staking, .lpstaking {
+  background-image:url(https://cdn.mos.cms.futurecdn.net/owm4oa3hXUG58mka7hPvfP.jpg);
   display: flex;
   height: 90vh;
   align-items: center;
@@ -58,7 +59,7 @@
 }
 
 #connect-btn{
-  font-family:fantasy;
+  font-family: 'Play', sans-serif;
   color: black;
   flex: 2;
   position: fixed;
@@ -75,7 +76,7 @@
 
 
 #balance-btn{
-  font-family:fantasy;
+  font-family: 'Play', sans-serif;
   color: black;
   position: fixed;
   top: 20px;

@@ -9,6 +9,7 @@ import LPStaking from './Pages/LPStaking';
 
 import { useState } from 'react';
 import { ethers } from 'ethers';
+import { Background } from 'tsparticles-engine';
 
 export let savedAcc;
 let currentAccount = null;
@@ -89,7 +90,8 @@ function App() {
           <Route path='/lpstaking' element={<LPStaking />} />
         </Routes>
       </Router>
-      <h1>Designer <a href="https://t.me/RyoLin" className="Ryo">RyoLin</a></h1>
+      {/* <h1>Designer <a href="https://t.me/RyoLin" className="Ryo">RyoLin</a></h1>
+      <h1>Background Source : https://www.livescience.com/what-is-the-universe</h1> */}
     </div>
   );
 }
