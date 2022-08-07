@@ -6,7 +6,7 @@ let currentAccount = null;
 let counter =0;
 function Roast() {
 
-    const generateLink = `https://ido-91a.pages.dev/staking?invitedBy=${savedAcc}`;
+    const generateLink = `https://ido-91a.pages.dev/roast?invitedBy=${savedAcc}`;
     console.log(generateLink);
     function GenerateLink () {
         counter=counter+1;
@@ -17,8 +17,6 @@ function Roast() {
     }
 
     function detectURL() {
-        document.getElementById("demo").innerHTML =
-        "The full URL of this page is:<br>" + window.location.href;
         console.log(window.location.href);
     }
 
@@ -29,7 +27,7 @@ function Roast() {
                 <h3>Generate Referal Links</h3>
                 <input id="ReferralLink"></input>
                 <button onClick={GenerateLink} id="Generate-Btn">Generate Referral Link</button>
-                <button onClick={detectURL} id="deml">Demo </button>
+                <button onClick={detectURL} id="demo">Demo </button>
             </div>
         </div>
     )
