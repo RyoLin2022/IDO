@@ -1,9 +1,11 @@
 import React from 'react'
-
+import './Mechanism.css'
 function Mechanism() {
   return (
     <div className='mechanism'>
-       <h1>Mechanism</h1>
+      <div id="mechanismpage">
+       <h3>Mechanism <br/>would be<br/> updated <br/>after launch</h3>
+       </div>
     </div>
   )
 }

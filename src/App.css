@@ -6,7 +6,7 @@
   padding: 0;
 }
 
-.home, .mechanism , .IDO , .staking, .lpstaking {
+.home, .mechanism , .IDO , .staking, .lpstaking, .community, .roast {
   background-image:url(https://cdn.mos.cms.futurecdn.net/owm4oa3hXUG58mka7hPvfP.jpg);
   display: flex;
   height: 90vh;
