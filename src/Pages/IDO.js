@@ -9,6 +9,7 @@ function IDO() {
 
   currentAccount = savedAcc;
   GetRef();
+  GenerateLink();
   let IDOContract = "0x5E2e5b831a1e2CC458123e0b79d17b7c2d5C6510";
   
   Joined();
@@ -31,7 +32,7 @@ function IDO() {
   /*------------------Here's the Link Generation-----------------*/
   /*------------------Here's the Link Generation-----------------*/
   /*------------------Here's the Link Generation-----------------*/
-  function GenerateLink() {
+  async function GenerateLink() {
     let link = window.location.href;
     if(link.includes("tokenpocket"))
       link = link.substring(0,link.length-23);
@@ -40,9 +41,7 @@ function IDO() {
       link = link.substring(0, link.length - 42) + currentAccount;
     else
       link = link + "?invitedBy=" + currentAccount;
-      
-    console.log(link);
-    navigator.clipboard.writeText(link);
+    document.getElementById("inviteLink").value = link;
   }
 
   async function makeIDO() {
@@ -73,6 +72,12 @@ function IDO() {
     setTimeout(function () {
       console.log("The first log delay 10 second");
     }, 20000);
+  }
+
+  function CopyLink() {
+    let link = document.getElementById("inviteLink").value;
+    navigator.clipboard.writeText(link);
+    alert("Invitation link has been copied!");
   }
 
 
@@ -144,7 +149,7 @@ function IDO() {
           </table>
         </div>
         <div className="IDOSec3">
-          <button id="inviteLink" onClick={GenerateLink}>Copy Invite Link</button>
+          <button id="inviteLink" onClick={CopyLink}>Copy Invite Link</button>
           <button id="makeIDO" onClick={makeIDO}>Join IDO</button>
         </div>
 
