@@ -1,27 +1,32 @@
-import React from 'react';
+import React, {Component, Fragment} from 'react';
 import './CSS/IDO.css';
 import { savedAcc } from '../App';
+import copy from 'copy-to-clipboard';
 
 let currentAccount = null;
 let refAccount = null;
-
 function IDO() {
+
+  function copyURL(url) {
+    copy(url);
+    console.log("success!!!!");
+  }
 
   currentAccount = savedAcc;
   GetRef();
   GenerateLink();
   let IDOContract = "0x5E2e5b831a1e2CC458123e0b79d17b7c2d5C6510";
-  
+
   Joined();
   refs();
 
-  async function GetRef() {    
+  async function GetRef() {
     let fullText = window.location.href;
-    if(fullText.includes("tokenpocket"));
-      fullText = fullText.substring(0,fullText.length-23);
+    if (fullText.includes("tokenpocket"));
+    fullText = fullText.substring(0, fullText.length - 23);
 
     let length = fullText.length;
-    
+
     if (length < 60)
       refAccount = "0x0000000000000000000000000000000000000000";
     else
@@ -34,9 +39,9 @@ function IDO() {
   /*------------------Here's the Link Generation-----------------*/
   async function GenerateLink() {
     let link = window.location.href;
-    if(link.includes("tokenpocket"))
-      link = link.substring(0,link.length-23);
-      
+    if (link.includes("tokenpocket"))
+      link = link.substring(0, link.length - 23);
+
     if (link.length > 60)
       link = link.substring(0, link.length - 42) + currentAccount;
     else
@@ -76,6 +81,10 @@ function IDO() {
 
   function CopyLink() {
     let link = document.getElementById("inviteLink").value;
+    if (!navigator.clipboard) {
+      copyURL(link);
+      alert("Copied used copyURL");
+    }
     navigator.clipboard.writeText(link);
     alert("Invitation link has been copied!");
   }
@@ -96,14 +105,12 @@ function IDO() {
     });
     let TF = parseInt(JoinedOrNot);
     var text;
-    if(TF===1)
+    if (TF === 1)
       text = "Joined";
-    else 
+    else
       text = "Not Joined";
     document.getElementById("IDOJOIN").innerText = text;
   }
-
-  
 
   async function refs() {
     let inputData = "0xa7bb8198000000000000000000000000" + currentAccount.substring(2, currentAccount.length);
@@ -124,7 +131,6 @@ function IDO() {
 
 
   return (
-
     <div className='IDO'>
       <div className="IDOSection">
         <div className="IDOSec1">
@@ -136,7 +142,7 @@ function IDO() {
             <tbody>
               <tr id="tr0">Dashboard</tr>
               <tr id="tr1">
-                <td id="td1">IDO</td>                
+                <td id="td1">IDO</td>
                 <td id="IDOJOIN"></td>
               </tr>
 
