@@ -1,16 +1,12 @@
-import React, {Component, Fragment} from 'react';
+import React, { useState } from 'react';
 import './CSS/IDO.css';
 import { savedAcc } from '../App';
-import copy from 'copy-to-clipboard';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 let currentAccount = null;
 let refAccount = null;
-function IDO() {
 
-  function copyURL(url) {
-    copy(url);
-    console.log("success!!!!");
-  }
+function IDO() {
 
   currentAccount = savedAcc;
   GetRef();
@@ -79,17 +75,6 @@ function IDO() {
     }, 20000);
   }
 
-  function CopyLink() {
-    let link = document.getElementById("inviteLink").value;
-    if (!navigator.clipboard) {
-      copyURL(link);
-      alert("Copied used copyURL");
-    }
-    copyURL(link);
-    alert("Invitation link has been copied!");
-  }
-
-
   async function Joined() {
     let inputData = "0x3421a177000000000000000000000000" + currentAccount.substring(2, currentAccount.length);
     let JoinedOrNot = await window.ethereum.request({
@@ -130,6 +115,19 @@ function IDO() {
   }
 
 
+  const [value, setValue] = useState('');
+  const [copied, setCopied] = useState(false);
+
+
+  function CopyLink() {
+    let link = document.getElementById("inviteLink").value;
+    if (!navigator.clipboard) {
+      alert("Copied used copyURL");
+    }
+    alert("Invitation link has been copied!");
+  }
+
+
   return (
     <div className='IDO'>
       <div className="IDOSection">
@@ -155,7 +153,13 @@ function IDO() {
           </table>
         </div>
         <div className="IDOSec3">
-          <button id="inviteLink" onClick={CopyLink}>Copy Invite Link</button>
+          <CopyToClipboard text={document.getElementById("inviteLink").value}
+            onCopy={() => setCopied(true)}
+          >
+            <button id="inviteLink">
+              Copy Invite Link
+            </button>
+          </CopyToClipboard>
           <button id="makeIDO" onClick={makeIDO}>Join IDO</button>
         </div>
 
