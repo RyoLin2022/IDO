@@ -85,7 +85,7 @@ function IDO() {
       copyURL(link);
       alert("Copied used copyURL");
     }
-    navigator.clipboard.writeText(link);
+    copyURL(link);
     alert("Invitation link has been copied!");
   }
 
