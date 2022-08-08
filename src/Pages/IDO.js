@@ -5,7 +5,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 let currentAccount = null;
 let refAccount = null;
-
+let refLink = null;
 function IDO() {
 
   currentAccount = savedAcc;
@@ -42,7 +42,7 @@ function IDO() {
       link = link.substring(0, link.length - 42) + currentAccount;
     else
       link = link + "?invitedBy=" + currentAccount;
-    document.getElementById("inviteLink").value = link;
+    refLink = link;
   }
 
   async function makeIDO() {
@@ -114,8 +114,6 @@ function IDO() {
     document.getElementById("InvitedAmount").innerText = REFS;
   }
 
-
-  const [value, setValue] = useState('');
   const [copied, setCopied] = useState(false);
 
 
@@ -153,7 +151,7 @@ function IDO() {
           </table>
         </div>
         <div className="IDOSec3">
-          <CopyToClipboard text={document.getElementById("inviteLink").value}
+          <CopyToClipboard text={refLink}
             onCopy={() => setCopied(true)}
           >
             <button id="inviteLink">
