@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { ethers } from 'ethers';
-import './LPStaking.css';
+import './CSS/LPStaking.css';
 import { savedAcc } from '../App';
 
 let currentAccount = null;

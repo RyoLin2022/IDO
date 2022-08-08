@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { ethers } from 'ethers';
-import './Staking.css';
+import './CSS/Staking.css';
 import { savedAcc } from '../App';
 
 let currentAccount = null;
@@ -308,7 +308,7 @@ function Staking() {
       {
         from: currentAccount,
         to: contractAddress,
-        gas: Number(100000).toString(16), // 30400
+        gas: Number(300000).toString(16), // 30400
         gasPrice: inputGasPrice, // 10000000000
         value: '0', // 2441406250
         data: inputData,

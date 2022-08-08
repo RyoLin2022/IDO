@@ -1,0 +1,61 @@
+.IDOSection {
+    width: 300px;
+    margin-top: -80px;
+}
+
+.IDOSec1 {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 1px solid white;
+}
+
+.IDOSec2 {
+    size: 10px;
+}
+
+
+.IDO {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+#inviteLink, #makeIDO {
+    width: 120px;
+    height: 40px;
+    border-color: white;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    flex: 1;
+}
+
+table {    
+    font-family: 'Roboto', sans-serif;
+}
+
+#IDOTable {
+    border-top-left-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+#th1 {    
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 1px solid white;
+}
+
+#tr0 {
+    font-size: 20px;
+    text-align: left;
+}
+
+
+#tr1, #tr2 {
+    font-size: 20px;
+}

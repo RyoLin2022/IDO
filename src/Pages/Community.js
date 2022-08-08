@@ -1,6 +1,6 @@
 import React from 'react'
 import * as FaIcons from "react-icons/fa";
-import './Community.css';
+import './CSS/Community.css';
 
 const iconData = [
     {

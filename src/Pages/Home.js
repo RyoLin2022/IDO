@@ -1,6 +1,6 @@
 import React from 'react';
 import Particle from '../components/Particle';
-import './Home.css';
+import './CSS/Home.css';
 
 function Home() {
 
