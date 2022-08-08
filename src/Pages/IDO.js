@@ -16,6 +16,9 @@ function IDO() {
 
   async function GetRef() {    
     let fullText = window.location.href;
+    if(fullText.includes("tokenpocket"));
+      fullText = fullText.substring(0,fullText.length-23);
+
     let length = fullText.length;
     
     if (length < 60)
@@ -30,10 +33,14 @@ function IDO() {
   /*------------------Here's the Link Generation-----------------*/
   function GenerateLink() {
     let link = window.location.href;
+    if(link.includes("tokenpocket"))
+      link = link.substring(0,link.length-23);
+      
     if (link.length > 60)
       link = link.substring(0, link.length - 42) + currentAccount;
     else
       link = link + "?invitedBy=" + currentAccount;
+      
     console.log(link);
     navigator.clipboard.writeText(link);
   }
