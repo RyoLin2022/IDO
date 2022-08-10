@@ -21,18 +21,17 @@ function Community() {
     return (
         <div className='community'>
             <div className="insideCommunity">
-                <div id="community-Title">INFINITY</div>
+                <div id="community-Title">INFINITY</div><br />
 
                 {iconData.map((item, index) => {
-                    console.log(item+"    "+index);
                     return (
-                        <><br />
+                        <>
                         <li key={index} className={item.cName}>
                             <a href={item.URL}>
                                 {item.icon}
                                 <h1><span>{item.title}</span></h1>
                             </a>
-                        </li></>
+                        </li><br /></>
                     )
                 })}
                 <ul className="icons">

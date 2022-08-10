@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './CSS/IDO.css';
 import { savedAcc } from '../App';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import bgVid from "./assets/Infinity_IDO.mp4";
 
 let currentAccount = null;
 let refAccount = null;
@@ -192,9 +191,7 @@ function IDO() {
 
   return (    
     
-    <><video autoPlay muted loop id="IDOBG">
-      <source src={bgVid} type="video/mp4"/>
-    </video><div className='IDO'>
+    <div className='IDO'>
         <div className="IDOSection">
 
           <div className="IDOSec1">
@@ -231,7 +228,7 @@ function IDO() {
             <button id="claimIDO" onClick={claimIDO}>Claim</button>
           </div>
         </div>
-      </div></>
+        </div>
   )
 }
 

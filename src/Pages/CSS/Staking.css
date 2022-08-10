@@ -3,6 +3,8 @@
 }
 
 .Stakingcontainer {
+    background-color: black;
+    opacity: 0.92;
     display: flex;
     font-size: 24px;
     font-family: 'Oswald', sans-serif;

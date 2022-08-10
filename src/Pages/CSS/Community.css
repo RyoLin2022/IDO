@@ -1,6 +1,8 @@
 #community-Title {
     color: white;
-    margin-top: -100px;
+    margin-top: -60px;
+    background-color: black;
+    opacity: 0.92;
 }
 
 #community-Title {
@@ -8,6 +10,8 @@
 }
 .insideCommunity {
     flex-direction: column;
+    background-color: black;
+    opacity: 0.92;
 }
 
 .nav-textCom {

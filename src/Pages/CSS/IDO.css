@@ -1,6 +1,8 @@
 .IDOSection {
     width: 300px;
     margin-top: -80px;
+    background-color: black;
+    opacity: 0.92;
 }
 
 .IDOSec1 {
@@ -93,11 +95,4 @@ table {
 
 #tr1, #tr2 {
     font-size: 20px;
-}
-
-#IDOBG {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
 }

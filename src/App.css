@@ -7,7 +7,10 @@
 }
 
 .home, .mechanism , .IDO , .staking, .lpstaking, .community, .roast {
-  background-image:url(https://cdn.mos.cms.futurecdn.net/owm4oa3hXUG58mka7hPvfP.jpg);
+  /* background-image:url(https://cdn.mos.cms.futurecdn.net/owm4oa3hXUG58mka7hPvfP.jpg); */
+  background-image:url(./Pages/assets/IDOBGPIC4.jpg);
+  background-position: center;
+  background-size: cover;
   display: flex;
   height: 90vh;
   align-items: center;
