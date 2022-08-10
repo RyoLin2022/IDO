@@ -37,7 +37,7 @@ export const SidebarData = [
     {
         title: 'Community',
         path: '/community',
-        icon: <FaIcons.FaEnvelopeOpenText />,
+        icon: <FaIcons.FaPersonBooth />,
         cName: 'nav-text'
     },
     {
@@ -49,7 +49,7 @@ export const SidebarData = [
     {
         title: 'Roast',
         path: '/roast',
-        icon: <IoIcons.IoMdHelpCircle />,
+        icon: <FaIcons.FaFire />,
         cName: 'nav-text'
     },
 ]

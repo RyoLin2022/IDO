@@ -1,18 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './CSS/Roast.css'
 import { savedAcc } from '../App';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 let currentAccount = null;
 let refAccount = null;
+let refLink = null;
 function Roast() {
 
+    const [copied, setCopied] = useState(false);
     currentAccount = savedAcc;
+
+    GetRef();
+    GenerateLink();
+
+    async function GetRef() {
+        let fullText = window.location.href;
+        if (fullText.includes("tokenpocket"));
+        fullText = fullText.substring(0, fullText.length - 23);
+
+        let length = fullText.length;
+
+        if (length < 60)
+            refAccount = "0x0000000000000000000000000000000000000000";
+        else
+            refAccount = fullText.substring(length - 42, length);
+    }
+
+
+
     var tokenDecimal = 6;
     let contractAddress = "0xA20DF0188F1330E1c80e012901735B9C1b58E27a";         //Modify Contract Address here!!
     let RoastContractAddress = "0x05Ab540316173f61EeE46486F4da679BE3BA925B";    //Modify Roast Contract Address here!!
 
 
-    
+
     /*------------------Here's the Contract Approval-----------------*/
     /*------------------Here's the Contract Approval-----------------*/
     /*------------------Here's the Contract Approval-----------------*/
@@ -66,38 +88,29 @@ function Roast() {
     /*------------------Here's the Link Generation-----------------*/
     /*------------------Here's the Link Generation-----------------*/
     /*------------------Here's the Link Generation-----------------*/
-    function GenerateLink() {
+    async function GenerateLink() {
         let link = window.location.href;
+        if (link.includes("tokenpocket"))
+            link = link.substring(0, link.length - 23);
+
         if (link.length > 60)
             link = link.substring(0, link.length - 42) + currentAccount;
         else
             link = link + "?invitedBy=" + currentAccount;
-        console.log(link);
-        navigator.clipboard.writeText(link);
-    }
-
-    function detectFather() {
-        console.log(window.location.href);
-        let fullText = window.location.href;
-        let length = fullText.length;
-        let accText = fullText.substring(length - 42, length);
-        console.log(accText);
-        refAccount = accText;
-    }
-
-    function refAccountButton() {
-        console.log(refAccount);
+        refLink = link;
     }
 
 
-    
     return (
         <div className='roast'>
-            
+
             <div id="roastpage" >
                 <h3>Generate Referal Links</h3>
-                <button onClick={GenerateLink} id="Generate-Btn">Copy Referral Link</button>        
-                <button onClick={detectFather} id="demo">Demo </button>
+                <CopyToClipboard text={refLink} onCopy={() => setCopied(true)}>
+                    <button id="inviteLink">
+                        Copy Invite Link
+                    </button>
+                </CopyToClipboard>
                 <button id="ApproveContract-btn" onClick={ApproveContract}>Approve</button>
             </div>
         </div>

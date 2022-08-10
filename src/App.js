@@ -16,6 +16,40 @@ export let savedAcc;
 let currentAccount = null;
 
 function App() {
+  switchEthereumChain();
+
+  async function switchEthereumChain() {
+    try {
+      await window.ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: '0x42' }],
+      });
+    } catch (e) {
+      if (e.code === 4902) {
+        try {
+          await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [
+              {
+                chainId: '0x42',
+                chainName: 'Smart Chain',
+                nativeCurrency: {
+                  name: 'OKC Mainnet',
+                  symbol: 'OKT', // 2-6 characters long
+                  decimals: 18
+                },
+                blockExplorerUrls: ['https://www.oklink.com/okexchain/'],
+                rpcUrls: ['https://exchainrpc.okex.org/'],
+              },
+            ],
+          });
+        } catch (addError) {
+          alert("Please change the chain to BSC");
+          console.error(addError);
+        }
+      }
+    }
+  }
 
   const [walletAddress, setWalletAddress] = useState("");
 
@@ -97,6 +131,7 @@ function App() {
       <h1>Background Source : https://www.livescience.com/what-is-the-universe</h1> */}
     </div>
   );
+  
 }
 export default App;
 
