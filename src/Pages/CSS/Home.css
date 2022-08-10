@@ -27,9 +27,10 @@ h2 {
   }
 
 .homeMID {
+    padding: 50px;
     width: 100vw;
     height: 50vh;
-    color: rgb(165, 17, 17);
+    color: white;
     background-color: black;
     opacity: 0.9;
     font-family: 'Roboto', sans-serif;
@@ -38,9 +39,10 @@ h2 {
 
 @media screen and (max-width: 600px){
     .homeMID{
+        padding: 50px;
         width: 100vw;
         height: 50vh;
-        color: rgb(165, 17, 17);
+        color: white;
         background-color: black;
         opacity: 0.9;
         font-family: 'Roboto', sans-serif;
