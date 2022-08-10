@@ -45,6 +45,13 @@ function Mechanism() {
               <td>Marketing Tax</td>
               <td>8</td>
             </tr>
+            <tr>
+              <td>Mining Pool Tax</td>
+              <td>2</td>
+            </tr>
+
+            The tax is changable.<br/>
+            The tax can only be set below 10.
           </tbody>
         </table>
       </div>
