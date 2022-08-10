@@ -51,7 +51,7 @@ function Mechanism() {
             </tr>
 
             The tax is changable.<br/>
-            The tax can only be set below 10.
+            The tax can only be set below 12.
           </tbody>
         </table>
       </div>

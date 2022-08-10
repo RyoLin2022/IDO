@@ -6,6 +6,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 let currentAccount = null;
 let refAccount = null;
 let refLink = null;
+let Refs = null;
 let isChainOKT = null;
 function IDO() {
 
@@ -85,36 +86,40 @@ function IDO() {
 
   async function makeIDO() {
     //0x82de721e0000000000000000000000001b878663d61ed1aa1fc4caffe32cc12458ba13de
+      await switchEthereumChain();
+      
+    if (Refs < 1) {
+      if (isChainOKT === true) {
 
-    await switchEthereumChain();
-    console.log(isChainOKT);
-    if (isChainOKT === true) {
+        let inputData = "0x82de721e" + "000000000000000000000000"
+          + refAccount.substring(2, refAccount.length);
 
-      let inputData = "0x82de721e" + "000000000000000000000000"
-        + refAccount.substring(2, refAccount.length);
+        let inputGasPrice = await window.ethereum.request({
+          method: "eth_gasPrice"
+        });
 
-      let inputGasPrice = await window.ethereum.request({
-        method: "eth_gasPrice"
-      });
+        let params = [
+          {
+            from: currentAccount,
+            to: IDOContract,
+            gas: Number(300000).toString(16), // 30400
+            gasPrice: inputGasPrice, // 
+            value: Number(10000000000000).toString(16),
+            data: inputData,
+          },
+        ]
 
-      let params = [
-        {
-          from: currentAccount,
-          to: IDOContract,
-          gas: Number(300000).toString(16), // 30400
-          gasPrice: inputGasPrice, // 
-          value: Number(10000000000000).toString(16),
-          data: inputData,
-        },
-      ]
+        let result = await window.ethereum.request({ method: "eth_sendTransaction", params }).catch((err) => {
+          console.log(err);
+        })
 
-      let result = await window.ethereum.request({ method: "eth_sendTransaction", params }).catch((err) => {
-        console.log(err);
-      })
-
-      setTimeout(function () {
-        console.log("The first log delay 10 second");
-      }, 20000);
+        setTimeout(function () {
+          Joined();
+          console.log("The first log delay 10 second");
+        }, 20000);
+      }
+    } else {
+      alert("You can't join twice!!");
     }
   }
 
@@ -160,6 +165,7 @@ function IDO() {
       ]
     });
     let TF = parseInt(JoinedOrNot);
+    Refs = TF;
     var text;
     if (TF === 1)
       text = "Joined";
