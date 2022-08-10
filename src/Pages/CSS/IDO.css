@@ -1,6 +1,6 @@
 .IDOSection {
     width: 300px;
-    margin-top: -80px;
+    margin-top: -20px;
     background-color: black;
     opacity: 0.92;
 }
@@ -21,6 +21,10 @@
     padding-bottom: 20px;
 }
 .IDOSec4 {    
+    border: 1px solid white;
+    padding-bottom: 20px;
+}
+.IDOSec5 {    
     border: 1px solid white;
     padding-bottom: 20px;
     border-bottom-right-radius: 10px;
@@ -56,7 +60,6 @@
     font-family: 'Roboto', sans-serif;
     position: relative;
     flex: 1;
-    margin-left: 20px;
 }
 
 #claimIDO {

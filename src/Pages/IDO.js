@@ -54,7 +54,7 @@ function IDO() {
         params: [{ chainId: '0x42' }],
       }).then(isChainOKT = true)
     } catch (e) {
-      isChainOKT=false;
+      isChainOKT = false;
       alert("Please change the chain to OKC");
       if (e.code === 4902) {
         try {
@@ -74,7 +74,7 @@ function IDO() {
               },
             ],
           });
-        } 
+        }
         catch (addError) {
           alert("Please change the chain to OKC");
           console.log(addError);
@@ -189,46 +189,46 @@ function IDO() {
     alert("Invitation link has been copied!!")
   }
 
-  return (    
-    
+  return (
+
     <div className='IDO'>
-        <div className="IDOSection">
+      <div className="IDOSection">
+        <div className="IDOSec1">
+          <table id="IDOTable">
 
-          <div className="IDOSec1">
-            <table id="IDOTable">
+            <thead id="th1">
+              IDO
+            </thead>
+            <tbody>
+              <tr id="tr0">Dashboard</tr>
+              <tr id="tr1">
+                <td id="td1">IDO</td>
+                <td id="IDOJOIN"></td>
+              </tr>
 
-              <thead id="th1">
-                IDO
-              </thead>
-              <tbody>
-                <tr id="tr0">Dashboard</tr>
-                <tr id="tr1">
-                  <td id="td1">IDO</td>
-                  <td id="IDOJOIN"></td>
-                </tr>
+              <tr id="tr2">
+                <td id="td2">Invitation</td>
+                <td id="InvitedAmount">0</td>
+              </tr>
+            </tbody>
 
-                <tr id="tr2">
-                  <td id="td2">Invitation</td>
-                  <td id="InvitedAmount">0</td>
-                </tr>
-              </tbody>
-
-            </table>
-          </div>
-          <div className="IDOSec3">
-            <CopyToClipboard text={refLink} onCopy={() => setCopied(true)}>
-              <button id="inviteLink" onClick={alertCopied}>
-                Copy Invite Link
-              </button>
-            </CopyToClipboard>
-            <button id="makeIDO" onClick={makeIDO}>Join IDO</button>
-          </div>
-
-          <div className="IDOSec4">
-            <button id="claimIDO" onClick={claimIDO}>Claim</button>
-          </div>
+          </table>
         </div>
+        <div className="IDOSec3">
+          <button id="makeIDO" onClick={makeIDO}>Join IDO</button>
         </div>
+        <div className="IDOSec4">
+          <CopyToClipboard text={refLink} onCopy={() => setCopied(true)}>
+            <button id="inviteLink" onClick={alertCopied}>
+              Copy Invite Link
+            </button>
+          </CopyToClipboard>
+        </div>
+        <div className="IDOSec5">
+          <button id="claimIDO" onClick={claimIDO}>Claim</button>
+        </div>
+      </div>
+    </div>
   )
 }
 

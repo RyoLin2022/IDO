@@ -11,11 +11,9 @@ function Home() {
     </video>
       <div className='home'>
         <div className="homeMID">
-          INFINITY<br/>
-          Phase1 : IDO STAKING<br/>
-          Phase2 : IFO<br/>
-          Phase3 : NFT SYSTEM<br/>
-          Phase4 : STAY TUNED<br/>
+          INFINITY<br/> ECOSYSTEM<br/>
+          <hr/>
+          IDO IFO Staking
         </div>
       </div>
     </>

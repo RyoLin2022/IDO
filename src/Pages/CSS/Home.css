@@ -27,7 +27,7 @@ h2 {
   }
 
 .homeMID {
-    padding: 50px;
+    padding: 90px;
     width: 100vw;
     height: 50vh;
     color: white;
@@ -39,7 +39,7 @@ h2 {
 
 @media screen and (max-width: 600px){
     .homeMID{
-        padding: 50px;
+        padding: 80px;
         width: 100vw;
         height: 50vh;
         color: white;

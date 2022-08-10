@@ -4,9 +4,50 @@ function Mechanism() {
   return (
     <div className='mechanism'>
       <div id="mechanismpage">
-       {/* <h3>Mechanism <br/>would be<br/> updated <br/>after launch</h3> */}
-       {/* <a href="https://zh.pngtree.com/free-backgrounds'">來自的免費背景照片 Pngtree.com</a> */}
-       </div>
+        <table id="mechanismTable1">
+          <thead id="mechanismTableHead">
+            Tokenomics
+          </thead>
+          <tbody>
+            <tr>
+              <td>Total Supply</td>
+              <td>100,000,000</td>
+            </tr>
+            <tr>
+              <td>IDO</td>
+              <td>30,000,000</td>
+            </tr>
+            <tr>
+              <td>Liquidity Pool</td>
+              <td>10,000,000</td>
+            </tr>
+            <tr>
+              <td>Mining</td>
+              <td>50,000,000</td>
+            </tr>
+            <tr>
+              <td>Team Token</td>
+              <td>10,000,000</td>
+            </tr>
+            (Team Token Unlock 5% per month)
+          </tbody>
+        </table>
+        <table id="mechanismTable2">
+          <thead id="mechanismTableHead">
+            Mechanism
+          </thead>
+          <tbody>
+            <tr>
+              <td>Liquidity Tax</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Marketing Tax</td>
+              <td>8</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }
